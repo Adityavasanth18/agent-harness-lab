@@ -91,4 +91,5 @@ See [Harbor instructions](docs/harbor.md) for external agent comparisons. Harbor
 - [Security boundaries](SECURITY.md)
 - [Local dashboard](results/demo/dashboard.html) and [machine-readable results](results/demo/summary.json)
 
-Included microtasks are small, public, and task-focused. They are not a replacement for SWE-bench or Terminal-Bench, and cannot establish long-horizon coding ability. No NVIDIA endorsement, hiring outcome, accepted upstream contribution, or performance improvement is claimed.
+Included microtasks are small, public, and task-focused.
+
