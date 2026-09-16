@@ -1,0 +1,20 @@
+{
+  "id": "02-chunk-boundaries",
+  "instruction": "Repair solution.py. chunks(values,size) returns consecutive list chunks including remainder; reject nonpositive size with ValueError. Use only Python standard library. Do not change the public function signature.",
+  "files": {
+    "solution.py": "def chunks(values, size):\n    \"\"\"Repair this implementation to satisfy the task contract.\"\"\"\n    return None\n"
+  },
+  "solution": {
+    "solution.py": "def chunks(values, size):\n    if size <= 0: raise ValueError('size')\n    return [values[i:i+size] for i in range(0,len(values),size)]\n"
+  },
+  "tests": {
+    "test_solution.py": "import unittest\nfrom solution import chunks\n\nclass ContractTests(unittest.TestCase):\n    def test_00(self):\n        self.assertEqual(chunks([1,2,3,4,5],2), [[1,2],[3,4],[5]])\n    def test_01(self):\n        self.assertEqual(chunks([],2), [])\n    def test_02(self):\n        with self.assertRaises(ValueError): chunks([1],0)\n\nif __name__ == '__main__':\n    unittest.main()\n"
+  },
+  "verify": [
+    "python",
+    "-m",
+    "unittest",
+    "-v",
+    "test_solution"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "25-weighted-success",
+  "instruction": "Repair solution.py. success(groups) pools (passed,total) counts across groups; return None for zero overall trials; reject counts outside 0<=passed<=total. Use only Python standard library. Do not change the public function signature.",
+  "files": {
+    "solution.py": "def success(groups):\n    \"\"\"Repair this implementation to satisfy the task contract.\"\"\"\n    return None\n"
+  },
+  "solution": {
+    "solution.py": "def success(groups):\n    if any(p<0 or t<0 or p>t for p,t in groups): raise ValueError('counts')\n    total=sum(t for p,t in groups)\n    return sum(p for p,t in groups)/total if total else None\n"
+  },
+  "tests": {
+    "test_solution.py": "import unittest\nfrom solution import success\n\nclass ContractTests(unittest.TestCase):\n    def test_00(self):\n        self.assertAlmostEqual(success([(1,1),(0,9)]),.1)\n    def test_01(self):\n        self.assertIsNone(success([(0,0)]))\n    def test_02(self):\n        with self.assertRaises(ValueError): success([(2,1)])\n\nif __name__ == '__main__':\n    unittest.main()\n"
+  },
+  "verify": [
+    "python",
+    "-m",
+    "unittest",
+    "-v",
+    "test_solution"
+  ]
+}

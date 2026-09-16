@@ -1,0 +1,23 @@
+{
+  "architecture": "planner",
+  "provider": "http",
+  "model": "your-served-model",
+  "endpoint": "http://localhost:8000/v1/chat/completions",
+  "api_key_env": "AHL_API_KEY",
+  "sandbox": "docker",
+  "docker_image": "python:3.12-slim",
+  "context_strategy": "sliding",
+  "context_chars": 48000,
+  "compress_tool_outputs": true,
+  "max_steps": 12,
+  "retries": 2,
+  "parallel_agents": 2,
+  "parallel_tools": false,
+  "adaptive": true,
+  "timeout_seconds": 60.0,
+  "request_timeout_seconds": 120.0,
+  "max_output_chars": 12000,
+  "token_budget": 64000,
+  "input_cost_per_million": null,
+  "output_cost_per_million": null
+}

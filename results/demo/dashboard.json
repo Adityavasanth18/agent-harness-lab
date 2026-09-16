@@ -1,0 +1,289 @@
+{
+  "schema_version": 1,
+  "events": 2160,
+  "requests": {
+    "count": 900,
+    "errors": 0,
+    "estimated_token_requests": 0,
+    "latency_ms": {
+      "count": 900,
+      "mean": 0.007813892222222223,
+      "p50": 0.006087,
+      "p95": 0.01135665,
+      "p99": 0.03317169999999996,
+      "max": 0.170319
+    },
+    "ttft_ms": {
+      "count": 0,
+      "mean": null,
+      "p50": null,
+      "p95": null,
+      "p99": null,
+      "max": null
+    },
+    "ttft_sources": {},
+    "token_itl_ms": {
+      "count": 0,
+      "mean": null,
+      "p50": null,
+      "p95": null,
+      "p99": null,
+      "max": null
+    },
+    "derived_chunk_tpot_ms": {
+      "count": 0,
+      "mean": null,
+      "p50": null,
+      "p95": null,
+      "p99": null,
+      "max": null
+    },
+    "chunk_interval_ms": {
+      "count": 0,
+      "mean": null,
+      "p50": null,
+      "p95": null,
+      "p99": null,
+      "max": null
+    },
+    "input_tokens": {
+      "total": null,
+      "known_total": 0,
+      "known_requests": 0,
+      "missing_requests": 900
+    },
+    "output_tokens": {
+      "total": null,
+      "known_total": 0,
+      "known_requests": 0,
+      "missing_requests": 900
+    },
+    "measurement_window_s": 18.929305514,
+    "output_tokens_per_second": null,
+    "peak_concurrent_requests": 1,
+    "requests_per_second": 47.545325914591295,
+    "retry_attempts": 0
+  },
+  "by_run": [
+    {
+      "run_id": "1654917e363c414fbe647741da03b66f",
+      "count": 900,
+      "errors": 0,
+      "estimated_token_requests": 0,
+      "latency_ms": {
+        "count": 900,
+        "mean": 0.007813892222222223,
+        "p50": 0.006087,
+        "p95": 0.01135665,
+        "p99": 0.03317169999999996,
+        "max": 0.170319
+      },
+      "ttft_ms": {
+        "count": 0,
+        "mean": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "ttft_sources": {},
+      "token_itl_ms": {
+        "count": 0,
+        "mean": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "derived_chunk_tpot_ms": {
+        "count": 0,
+        "mean": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "chunk_interval_ms": {
+        "count": 0,
+        "mean": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "input_tokens": {
+        "total": null,
+        "known_total": 0,
+        "known_requests": 0,
+        "missing_requests": 900
+      },
+      "output_tokens": {
+        "total": null,
+        "known_total": 0,
+        "known_requests": 0,
+        "missing_requests": 900
+      },
+      "measurement_window_s": 18.929305514,
+      "output_tokens_per_second": null,
+      "peak_concurrent_requests": 1,
+      "requests_per_second": 47.545325914591295,
+      "retry_attempts": 0
+    }
+  ],
+  "tools": {
+    "count": 720,
+    "duration_ms": {
+      "count": 720,
+      "mean": 33.59673601666667,
+      "p50": 33.510688,
+      "p95": 66.7551176,
+      "p99": 108.35218956999809,
+      "max": 118.585907
+    }
+  },
+  "efficiency": {
+    "total_tokens": null,
+    "tokens_per_successful_trial": null,
+    "gpu_seconds_per_successful_trial": null,
+    "configured_rate_total_cost": null,
+    "configured_rate_known_cost": 0,
+    "costed_requests": 0,
+    "cost_per_successful_trial": null
+  },
+  "by_architecture": [
+    {
+      "architecture": "parallel",
+      "trials": 90,
+      "scored": 90,
+      "synthetic_trials": 90,
+      "success_rate": 1.0,
+      "latency_ms": {
+        "count": 90,
+        "mean": 73.44847516666667,
+        "p50": 69.5436415,
+        "p95": 104.9603662999999,
+        "p99": 126.97450887999997,
+        "max": 162.180513
+      }
+    },
+    {
+      "architecture": "planner",
+      "trials": 90,
+      "scored": 90,
+      "synthetic_trials": 90,
+      "success_rate": 1.0,
+      "latency_ms": {
+        "count": 90,
+        "mean": 68.18422737777777,
+        "p50": 67.0580325,
+        "p95": 70.40010205,
+        "p99": 86.34828076999997,
+        "max": 120.404048
+      }
+    },
+    {
+      "architecture": "single",
+      "trials": 90,
+      "scored": 90,
+      "synthetic_trials": 90,
+      "success_rate": 1.0,
+      "latency_ms": {
+        "count": 90,
+        "mean": 68.11472301111111,
+        "p50": 66.923757,
+        "p95": 71.35442764999999,
+        "p99": 89.51070352999999,
+        "max": 121.460923
+      }
+    }
+  ],
+  "trials": {
+    "count": 270,
+    "scored": 270,
+    "success_rate": 1.0,
+    "synthetic": 270,
+    "latency_ms": {
+      "count": 270,
+      "mean": 69.91580851851852,
+      "p50": 67.7200545,
+      "p95": 74.1641161,
+      "p99": 120.73167925,
+      "max": 162.180513
+    }
+  },
+  "by_provider_model": [
+    {
+      "provider": "oracle",
+      "model": "local-test-fixture",
+      "count": 900,
+      "errors": 0,
+      "estimated_token_requests": 0,
+      "latency_ms": {
+        "count": 900,
+        "mean": 0.007813892222222223,
+        "p50": 0.006087,
+        "p95": 0.01135665,
+        "p99": 0.03317169999999996,
+        "max": 0.170319
+      },
+      "ttft_ms": {
+        "count": 0,
+        "mean": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "ttft_sources": {},
+      "token_itl_ms": {
+        "count": 0,
+        "mean": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "derived_chunk_tpot_ms": {
+        "count": 0,
+        "mean": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "chunk_interval_ms": {
+        "count": 0,
+        "mean": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "input_tokens": {
+        "total": null,
+        "known_total": 0,
+        "known_requests": 0,
+        "missing_requests": 900
+      },
+      "output_tokens": {
+        "total": null,
+        "known_total": 0,
+        "known_requests": 0,
+        "missing_requests": 900
+      },
+      "measurement_window_s": 18.929305514,
+      "output_tokens_per_second": null,
+      "peak_concurrent_requests": 1,
+      "requests_per_second": 47.545325914591295,
+      "retry_attempts": 0
+    }
+  ],
+  "notes": [
+    "TTFT uses the first observed token or first content chunk; transport chunks are not tokens.",
+    "Multiple runs may have unrelated monotonic clocks: combined throughput/window is null, peak concurrency is the maximum within one run, and per-run metrics remain available.",
+    "Token ITL is unavailable without actual token timestamps. Missing usage remains null.",
+    "Derived chunk TPOT divides first-to-last content chunk time by authoritative output_tokens minus one; it is an average proxy, not token interval samples.",
+    "Cost uses user-configured per-million rates and recorded usage; missing rates or usage leave total cost null. GPU time is unavailable.",
+    "Throughput includes all request attempts over the first-start to last-end measurement window."
+  ]
+}

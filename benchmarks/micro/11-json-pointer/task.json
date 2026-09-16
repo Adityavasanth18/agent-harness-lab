@@ -1,0 +1,20 @@
+{
+  "id": "11-json-pointer",
+  "instruction": "Repair solution.py. lookup(document,pointer) implements JSON Pointer (~1 slash, ~0 tilde), supports arrays, empty pointer returns root; malformed pointer raises ValueError; missing keys/indices may raise KeyError/IndexError. Use only Python standard library. Do not change the public function signature.",
+  "files": {
+    "solution.py": "def lookup(document, pointer):\n    \"\"\"Repair this implementation to satisfy the task contract.\"\"\"\n    return None\n"
+  },
+  "solution": {
+    "solution.py": "def lookup(document, pointer):\n    if pointer=='': return document\n    if not pointer.startswith('/'): raise ValueError('pointer')\n    value=document\n    for token in pointer[1:].split('/'):\n        token=token.replace('~1','/').replace('~0','~')\n        value=value[int(token)] if isinstance(value,list) else value[token]\n    return value\n"
+  },
+  "tests": {
+    "test_solution.py": "import unittest\nfrom solution import lookup\n\nclass ContractTests(unittest.TestCase):\n    def test_00(self):\n        self.assertEqual(lookup({'a/b':[{'~x':7}]}, '/a~1b/0/~0x'),7)\n    def test_01(self):\n        self.assertEqual(lookup({'':3},'/'),3)\n    def test_02(self):\n        self.assertEqual(lookup([1],''),[1])\n    def test_03(self):\n        with self.assertRaises(ValueError): lookup({},'bad')\n\nif __name__ == '__main__':\n    unittest.main()\n"
+  },
+  "verify": [
+    "python",
+    "-m",
+    "unittest",
+    "-v",
+    "test_solution"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "19-percentile-linear",
+  "instruction": "Repair solution.py. percentile(values,q) computes linear interpolation at (n-1)*q, sorted numeric input, q in [0,1]; empty input returns None; invalid q ValueError. Use only Python standard library. Do not change the public function signature.",
+  "files": {
+    "solution.py": "def percentile(values, q):\n    \"\"\"Repair this implementation to satisfy the task contract.\"\"\"\n    return None\n"
+  },
+  "solution": {
+    "solution.py": "def percentile(values, q):\n    import math\n    if not 0<=q<=1: raise ValueError('q')\n    if not values: return None\n    v=sorted(values); x=(len(v)-1)*q; lo=math.floor(x); hi=math.ceil(x)\n    return v[lo]+(v[hi]-v[lo])*(x-lo)\n"
+  },
+  "tests": {
+    "test_solution.py": "import unittest\nfrom solution import percentile\n\nclass ContractTests(unittest.TestCase):\n    def test_00(self):\n        self.assertAlmostEqual(percentile([10,0,20,30],.5),15)\n    def test_01(self):\n        self.assertAlmostEqual(percentile([0,100],.95),95)\n    def test_02(self):\n        self.assertIsNone(percentile([], .5))\n    def test_03(self):\n        with self.assertRaises(ValueError): percentile([1],2)\n\nif __name__ == '__main__':\n    unittest.main()\n"
+  },
+  "verify": [
+    "python",
+    "-m",
+    "unittest",
+    "-v",
+    "test_solution"
+  ]
+}

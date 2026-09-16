@@ -1,0 +1,20 @@
+{
+  "id": "07-dependency-cycles",
+  "instruction": "Repair solution.py. cycles(graph) returns sorted lists of strongly connected components with >1 node or self-loops. Sort members and sort components lexicographically. Use only Python standard library. Do not change the public function signature.",
+  "files": {
+    "solution.py": "def cycles(graph):\n    \"\"\"Repair this implementation to satisfy the task contract.\"\"\"\n    return None\n"
+  },
+  "solution": {
+    "solution.py": "def cycles(graph):\n    nodes=set(graph)|{v for vs in graph.values() for v in vs}\n    def reach(n):\n        seen={n}; todo=[n]\n        while todo:\n            for v in graph.get(todo.pop(),[]):\n                if v not in seen: seen.add(v); todo.append(v)\n        return seen\n    r={n:reach(n) for n in nodes}; remaining=set(nodes); out=[]\n    while remaining:\n        n=min(remaining); group=sorted(v for v in remaining if v in r[n] and n in r[v]); remaining.difference_update(group)\n        if len(group)>1 or n in graph.get(n,[]): out.append(group)\n    return sorted(out)\n"
+  },
+  "tests": {
+    "test_solution.py": "import unittest\nfrom solution import cycles\n\nclass ContractTests(unittest.TestCase):\n    def test_00(self):\n        self.assertEqual(cycles({'a':['b'],'b':['a','c'],'c':[]}), [['a','b']])\n    def test_01(self):\n        self.assertEqual(cycles({'x':['x'],'z':[]}), [['x']])\n    def test_02(self):\n        self.assertEqual(cycles({}), [])\n\nif __name__ == '__main__':\n    unittest.main()\n"
+  },
+  "verify": [
+    "python",
+    "-m",
+    "unittest",
+    "-v",
+    "test_solution"
+  ]
+}

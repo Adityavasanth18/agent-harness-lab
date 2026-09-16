@@ -1,0 +1,20 @@
+{
+  "id": "10-version-order",
+  "instruction": "Repair solution.py. version_key(text) converts dot-separated nonnegative decimal version components into an integer tuple, removing trailing zeros (retain one zero). Reject empty/negative/nonnumeric components with ValueError. Use only Python standard library. Do not change the public function signature.",
+  "files": {
+    "solution.py": "def version_key(text):\n    \"\"\"Repair this implementation to satisfy the task contract.\"\"\"\n    return None\n"
+  },
+  "solution": {
+    "solution.py": "def version_key(text):\n    parts=text.split('.')\n    if any(not p or not p.isascii() or not p.isdecimal() for p in parts): raise ValueError('version')\n    result=[int(p) for p in parts]\n    while len(result)>1 and result[-1]==0: result.pop()\n    return tuple(result)\n"
+  },
+  "tests": {
+    "test_solution.py": "import unittest\nfrom solution import version_key\n\nclass ContractTests(unittest.TestCase):\n    def test_00(self):\n        self.assertEqual(version_key('1.10.0'), (1,10))\n    def test_01(self):\n        self.assertEqual(version_key('0.0'), (0,))\n    def test_02(self):\n        with self.assertRaises(ValueError): version_key('1..2')\n    def test_03(self):\n        with self.assertRaises(ValueError): version_key('-1.0')\n\nif __name__ == '__main__':\n    unittest.main()\n"
+  },
+  "verify": [
+    "python",
+    "-m",
+    "unittest",
+    "-v",
+    "test_solution"
+  ]
+}

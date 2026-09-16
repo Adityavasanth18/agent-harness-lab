@@ -1,0 +1,20 @@
+{
+  "id": "18-tool-truncation",
+  "instruction": "Repair solution.py. truncate(text,limit) returns text unchanged if it fits, otherwise first limit-3 characters plus ...; for limit<3 return first limit characters. Negative limit raises ValueError. Use only Python standard library. Do not change the public function signature.",
+  "files": {
+    "solution.py": "def truncate(text, limit):\n    \"\"\"Repair this implementation to satisfy the task contract.\"\"\"\n    return None\n"
+  },
+  "solution": {
+    "solution.py": "def truncate(text, limit):\n    if limit<0: raise ValueError('limit')\n    if len(text)<=limit: return text\n    return text[:limit] if limit<3 else text[:limit-3]+'...'\n"
+  },
+  "tests": {
+    "test_solution.py": "import unittest\nfrom solution import truncate\n\nclass ContractTests(unittest.TestCase):\n    def test_00(self):\n        self.assertEqual(truncate('abcdefgh',6),'abc...')\n    def test_01(self):\n        self.assertEqual(truncate('abcd',2),'ab')\n    def test_02(self):\n        self.assertEqual(truncate('ab',4),'ab')\n    def test_03(self):\n        with self.assertRaises(ValueError): truncate('a',-1)\n\nif __name__ == '__main__':\n    unittest.main()\n"
+  },
+  "verify": [
+    "python",
+    "-m",
+    "unittest",
+    "-v",
+    "test_solution"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "16-context-tail",
+  "instruction": "Repair solution.py. tail(messages,budget) keeps the largest contiguous suffix whose cost (message[1], nonnegative integer) fits budget. Return original message tuples in order. Negative budget raises ValueError. Use only Python standard library. Do not change the public function signature.",
+  "files": {
+    "solution.py": "def tail(messages, budget):\n    \"\"\"Repair this implementation to satisfy the task contract.\"\"\"\n    return None\n"
+  },
+  "solution": {
+    "solution.py": "def tail(messages, budget):\n    if budget<0: raise ValueError('budget')\n    result=[]; used=0\n    for msg in reversed(messages):\n        if used+msg[1]>budget: break\n        result.append(msg); used+=msg[1]\n    return list(reversed(result))\n"
+  },
+  "tests": {
+    "test_solution.py": "import unittest\nfrom solution import tail\n\nclass ContractTests(unittest.TestCase):\n    def test_00(self):\n        self.assertEqual(tail([('a',2),('b',4),('c',1)],5), [('b',4),('c',1)])\n    def test_01(self):\n        self.assertEqual(tail([('a',1),('b',9)],3), [])\n    def test_02(self):\n        self.assertEqual(tail([('a',0)],0), [('a',0)])\n    def test_03(self):\n        with self.assertRaises(ValueError): tail([],-1)\n\nif __name__ == '__main__':\n    unittest.main()\n"
+  },
+  "verify": [
+    "python",
+    "-m",
+    "unittest",
+    "-v",
+    "test_solution"
+  ]
+}

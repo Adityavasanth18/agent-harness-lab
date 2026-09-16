@@ -1,0 +1,20 @@
+{
+  "id": "03-interval-union",
+  "instruction": "Repair solution.py. merge(intervals) merges overlapping or touching closed numeric intervals, sorts output, leaves input unchanged. Input intervals have start<=end. Use only Python standard library. Do not change the public function signature.",
+  "files": {
+    "solution.py": "def merge(intervals):\n    \"\"\"Repair this implementation to satisfy the task contract.\"\"\"\n    return None\n"
+  },
+  "solution": {
+    "solution.py": "def merge(intervals):\n    out=[]\n    for a,b in sorted(intervals):\n        if out and a<=out[-1][1]: out[-1][1]=max(out[-1][1],b)\n        else: out.append([a,b])\n    return out\n"
+  },
+  "tests": {
+    "test_solution.py": "import unittest\nfrom solution import merge\n\nclass ContractTests(unittest.TestCase):\n    def test_00(self):\n        self.assertEqual(merge([[5,7],[1,3],[3,6]]), [[1,7]])\n    def test_01(self):\n        self.assertEqual(merge([]), [])\n    def test_02(self):\n        x=[[2,3],[1,1]]; self.assertEqual(merge(x), [[1,1],[2,3]]); self.assertEqual(x,[[2,3],[1,1]])\n\nif __name__ == '__main__':\n    unittest.main()\n"
+  },
+  "verify": [
+    "python",
+    "-m",
+    "unittest",
+    "-v",
+    "test_solution"
+  ]
+}

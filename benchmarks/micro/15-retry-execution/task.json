@@ -1,0 +1,20 @@
+{
+  "id": "15-retry-execution",
+  "instruction": "Repair solution.py. retry(fn,attempts) calls fn until successful; retry only TimeoutError; total calls <=attempts; propagate last failure and other exceptions; attempts<1 ValueError. Use only Python standard library. Do not change the public function signature.",
+  "files": {
+    "solution.py": "def retry(fn, attempts):\n    \"\"\"Repair this implementation to satisfy the task contract.\"\"\"\n    return None\n"
+  },
+  "solution": {
+    "solution.py": "def retry(fn, attempts):\n    if attempts<1: raise ValueError('attempts')\n    for i in range(attempts):\n        try: return fn()\n        except TimeoutError:\n            if i==attempts-1: raise\n"
+  },
+  "tests": {
+    "test_solution.py": "import unittest\nfrom solution import retry\n\nclass ContractTests(unittest.TestCase):\n    def test_00(self):\n        calls=[]\n        def f():\n            calls.append(1)\n            if len(calls)<3: raise TimeoutError()\n            return 9\n        self.assertEqual(retry(f,3),9); self.assertEqual(len(calls),3)\n    def test_01(self):\n        with self.assertRaises(ValueError): retry(lambda: 1,0)\n    def test_02(self):\n        calls=[]\n        def f():\n            calls.append(1); raise RuntimeError('fatal')\n        with self.assertRaises(RuntimeError): retry(f,4)\n        self.assertEqual(len(calls),1)\n    def test_03(self):\n        with self.assertRaises(TimeoutError): retry(lambda: (_ for _ in ()).throw(TimeoutError()),2)\n\nif __name__ == '__main__':\n    unittest.main()\n"
+  },
+  "verify": [
+    "python",
+    "-m",
+    "unittest",
+    "-v",
+    "test_solution"
+  ]
+}

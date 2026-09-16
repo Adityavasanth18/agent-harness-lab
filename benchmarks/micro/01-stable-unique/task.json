@@ -1,0 +1,20 @@
+{
+  "id": "01-stable-unique",
+  "instruction": "Repair solution.py. unique(values) removes duplicate hashable values, preserving first occurrence. Use only Python standard library. Do not change the public function signature.",
+  "files": {
+    "solution.py": "def unique(values):\n    \"\"\"Repair this implementation to satisfy the task contract.\"\"\"\n    return sorted(set(values))\n"
+  },
+  "solution": {
+    "solution.py": "def unique(values):\n    return list(dict.fromkeys(values))\n"
+  },
+  "tests": {
+    "test_solution.py": "import unittest\nfrom solution import unique\n\nclass ContractTests(unittest.TestCase):\n    def test_00(self):\n        self.assertEqual(unique([3,1,3,2,1]), [3,1,2])\n    def test_01(self):\n        self.assertEqual(unique([]), [])\n    def test_02(self):\n        self.assertEqual(unique(['a','a','b']), ['a','b'])\n\nif __name__ == '__main__':\n    unittest.main()\n"
+  },
+  "verify": [
+    "python",
+    "-m",
+    "unittest",
+    "-v",
+    "test_solution"
+  ]
+}

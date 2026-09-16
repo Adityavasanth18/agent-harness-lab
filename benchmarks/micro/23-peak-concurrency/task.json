@@ -1,0 +1,20 @@
+{
+  "id": "23-peak-concurrency",
+  "instruction": "Repair solution.py. peak(intervals) returns peak number of half-open [start,end) intervals; zero-duration intervals ignored, end<start ValueError. End events precede starts at equal time. Use only Python standard library. Do not change the public function signature.",
+  "files": {
+    "solution.py": "def peak(intervals):\n    \"\"\"Repair this implementation to satisfy the task contract.\"\"\"\n    return None\n"
+  },
+  "solution": {
+    "solution.py": "def peak(intervals):\n    events=[]\n    for start,end in intervals:\n        if end<start: raise ValueError('interval')\n        if end>start: events.extend([(start,1),(end,-1)])\n    active=best=0\n    for _,delta in sorted(events): active+=delta; best=max(best,active)\n    return best\n"
+  },
+  "tests": {
+    "test_solution.py": "import unittest\nfrom solution import peak\n\nclass ContractTests(unittest.TestCase):\n    def test_00(self):\n        self.assertEqual(peak([(0,1),(1,2)]),1)\n    def test_01(self):\n        self.assertEqual(peak([(0,3),(1,2),(1,4)]),3)\n    def test_02(self):\n        self.assertEqual(peak([(1,1)]),0)\n    def test_03(self):\n        with self.assertRaises(ValueError): peak([(2,1)])\n\nif __name__ == '__main__':\n    unittest.main()\n"
+  },
+  "verify": [
+    "python",
+    "-m",
+    "unittest",
+    "-v",
+    "test_solution"
+  ]
+}

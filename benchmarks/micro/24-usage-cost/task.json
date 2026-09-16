@@ -1,0 +1,20 @@
+{
+  "id": "24-usage-cost",
+  "instruction": "Repair solution.py. cost(input_tokens,output_tokens,input_rate,output_rate) computes USD with rates per million tokens; reject any negative argument. Use only Python standard library. Do not change the public function signature.",
+  "files": {
+    "solution.py": "def cost(input_tokens, output_tokens, input_rate, output_rate):\n    \"\"\"Repair this implementation to satisfy the task contract.\"\"\"\n    return None\n"
+  },
+  "solution": {
+    "solution.py": "def cost(input_tokens, output_tokens, input_rate, output_rate):\n    if min(input_tokens,output_tokens,input_rate,output_rate)<0: raise ValueError('negative')\n    return (input_tokens*input_rate+output_tokens*output_rate)/1000000\n"
+  },
+  "tests": {
+    "test_solution.py": "import unittest\nfrom solution import cost\n\nclass ContractTests(unittest.TestCase):\n    def test_00(self):\n        self.assertAlmostEqual(cost(1000,2000,3,15),.033)\n    def test_01(self):\n        self.assertEqual(cost(0,0,2,4),0)\n    def test_02(self):\n        with self.assertRaises(ValueError): cost(-1,0,1,1)\n\nif __name__ == '__main__':\n    unittest.main()\n"
+  },
+  "verify": [
+    "python",
+    "-m",
+    "unittest",
+    "-v",
+    "test_solution"
+  ]
+}

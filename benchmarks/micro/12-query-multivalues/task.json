@@ -1,0 +1,20 @@
+{
+  "id": "12-query-multivalues",
+  "instruction": "Repair solution.py. query(text) parses URL query text into dict of lists, percent/plus decoding and preserving blank values and repeated key order. Use only Python standard library. Do not change the public function signature.",
+  "files": {
+    "solution.py": "def query(text):\n    \"\"\"Repair this implementation to satisfy the task contract.\"\"\"\n    return None\n"
+  },
+  "solution": {
+    "solution.py": "def query(text):\n    from urllib.parse import parse_qs\n    return parse_qs(text,keep_blank_values=True)\n"
+  },
+  "tests": {
+    "test_solution.py": "import unittest\nfrom solution import query\n\nclass ContractTests(unittest.TestCase):\n    def test_00(self):\n        self.assertEqual(query('x=1&x=2&empty=&name=A+B'), {'x':['1','2'],'empty':[''],'name':['A B']})\n    def test_01(self):\n        self.assertEqual(query('a=%26'), {'a':['&']})\n    def test_02(self):\n        self.assertEqual(query(''), {})\n\nif __name__ == '__main__':\n    unittest.main()\n"
+  },
+  "verify": [
+    "python",
+    "-m",
+    "unittest",
+    "-v",
+    "test_solution"
+  ]
+}

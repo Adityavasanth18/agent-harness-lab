@@ -1,0 +1,20 @@
+{
+  "id": "20-time-to-first-token",
+  "instruction": "Repair solution.py. ttft(start,events) returns first nonempty content event timestamp minus request start. Events are (timestamp,text); skip empty text; no content returns None; first nonempty timestamp before start raises ValueError. Use only Python standard library. Do not change the public function signature.",
+  "files": {
+    "solution.py": "def ttft(start, events):\n    \"\"\"Repair this implementation to satisfy the task contract.\"\"\"\n    return None\n"
+  },
+  "solution": {
+    "solution.py": "def ttft(start, events):\n    for t,content in events:\n        if content:\n            if t<start: raise ValueError('clock')\n            return t-start\n    return None\n"
+  },
+  "tests": {
+    "test_solution.py": "import unittest\nfrom solution import ttft\n\nclass ContractTests(unittest.TestCase):\n    def test_00(self):\n        self.assertAlmostEqual(ttft(10,[(10.1,''),(10.4,'a'),(10.5,'b')]),.4)\n    def test_01(self):\n        self.assertIsNone(ttft(1,[(2,'')]))\n    def test_02(self):\n        with self.assertRaises(ValueError): ttft(4,[(3,'a')])\n\nif __name__ == '__main__':\n    unittest.main()\n"
+  },
+  "verify": [
+    "python",
+    "-m",
+    "unittest",
+    "-v",
+    "test_solution"
+  ]
+}

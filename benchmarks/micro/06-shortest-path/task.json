@@ -1,0 +1,20 @@
+{
+  "id": "06-shortest-path",
+  "instruction": "Repair solution.py. distance(graph,start,end) returns unweighted directed shortest edge count, or None if unreachable. Use only Python standard library. Do not change the public function signature.",
+  "files": {
+    "solution.py": "def distance(graph, start, end):\n    \"\"\"Repair this implementation to satisfy the task contract.\"\"\"\n    return None\n"
+  },
+  "solution": {
+    "solution.py": "def distance(graph, start, end):\n    from collections import deque\n    q=deque([(start,0)]); seen={start}\n    while q:\n        n,d=q.popleft()\n        if n==end: return d\n        for v in graph.get(n,[]):\n            if v not in seen: seen.add(v); q.append((v,d+1))\n    return None\n"
+  },
+  "tests": {
+    "test_solution.py": "import unittest\nfrom solution import distance\n\nclass ContractTests(unittest.TestCase):\n    def test_00(self):\n        self.assertEqual(distance({'a':['b','c'],'b':['d'],'c':['d']},'a','d'),2)\n    def test_01(self):\n        self.assertEqual(distance({},'x','x'),0)\n    def test_02(self):\n        self.assertIsNone(distance({'a':['a']},'a','z'))\n\nif __name__ == '__main__':\n    unittest.main()\n"
+  },
+  "verify": [
+    "python",
+    "-m",
+    "unittest",
+    "-v",
+    "test_solution"
+  ]
+}

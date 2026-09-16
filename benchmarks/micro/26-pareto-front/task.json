@@ -1,0 +1,20 @@
+{
+  "id": "26-pareto-front",
+  "instruction": "Repair solution.py. pareto(rows) returns nondominated rows in original order, each {quality,latency}; maximize quality, minimize latency, domination requires at least one strict inequality. Equal rows both remain. Use only Python standard library. Do not change the public function signature.",
+  "files": {
+    "solution.py": "def pareto(rows):\n    \"\"\"Repair this implementation to satisfy the task contract.\"\"\"\n    return None\n"
+  },
+  "solution": {
+    "solution.py": "def pareto(rows):\n    return [r for r in rows if not any(s['quality']>=r['quality'] and s['latency']<=r['latency'] and (s['quality']>r['quality'] or s['latency']<r['latency']) for s in rows)]\n"
+  },
+  "tests": {
+    "test_solution.py": "import unittest\nfrom solution import pareto\n\nclass ContractTests(unittest.TestCase):\n    def test_00(self):\n        a={'quality':1,'latency':2}; b={'quality':.5,'latency':3}; c={'quality':.8,'latency':1}; self.assertEqual(pareto([a,b,c]),[a,c])\n    def test_01(self):\n        a={'quality':1,'latency':2}; self.assertEqual(pareto([a,a]),[a,a])\n    def test_02(self):\n        self.assertEqual(pareto([]), [])\n\nif __name__ == '__main__':\n    unittest.main()\n"
+  },
+  "verify": [
+    "python",
+    "-m",
+    "unittest",
+    "-v",
+    "test_solution"
+  ]
+}

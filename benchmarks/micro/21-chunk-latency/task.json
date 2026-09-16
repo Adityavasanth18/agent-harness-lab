@@ -1,0 +1,20 @@
+{
+  "id": "21-chunk-latency",
+  "instruction": "Repair solution.py. gaps(events) returns intervals between successive nonempty content event timestamps; ignore empty events and reject decreasing nonempty timestamps. This is chunk latency, not token latency. Use only Python standard library. Do not change the public function signature.",
+  "files": {
+    "solution.py": "def gaps(events):\n    \"\"\"Repair this implementation to satisfy the task contract.\"\"\"\n    return None\n"
+  },
+  "solution": {
+    "solution.py": "def gaps(events):\n    times=[t for t,c in events if c]\n    result=[b-a for a,b in zip(times,times[1:])]\n    if any(x<0 for x in result): raise ValueError('clock')\n    return result\n"
+  },
+  "tests": {
+    "test_solution.py": "import unittest\nfrom solution import gaps\n\nclass ContractTests(unittest.TestCase):\n    def test_00(self):\n        self.assertEqual(gaps([(1,'a'),(2,''),(4,'bc'),(6,'d')]), [3,2])\n    def test_01(self):\n        self.assertEqual(gaps([(1,'a')]), [])\n    def test_02(self):\n        with self.assertRaises(ValueError): gaps([(2,'a'),(1,'b')])\n\nif __name__ == '__main__':\n    unittest.main()\n"
+  },
+  "verify": [
+    "python",
+    "-m",
+    "unittest",
+    "-v",
+    "test_solution"
+  ]
+}

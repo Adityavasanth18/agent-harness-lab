@@ -1,0 +1,20 @@
+{
+  "id": "28-recursive-redaction",
+  "instruction": "Repair solution.py. redact(value) recursively copies dicts/lists, replacing values of case-insensitive keys token,password,api_key with [REDACTED]; preserve scalar values and input object. Use only Python standard library. Do not change the public function signature.",
+  "files": {
+    "solution.py": "def redact(value):\n    \"\"\"Repair this implementation to satisfy the task contract.\"\"\"\n    return None\n"
+  },
+  "solution": {
+    "solution.py": "def redact(value):\n    if isinstance(value,dict): return {k:'[REDACTED]' if k.lower() in {'token','password','api_key'} else redact(v) for k,v in value.items()}\n    if isinstance(value,list): return [redact(v) for v in value]\n    return value\n"
+  },
+  "tests": {
+    "test_solution.py": "import unittest\nfrom solution import redact\n\nclass ContractTests(unittest.TestCase):\n    def test_00(self):\n        x={'Token':'abc','nested':[{'password':'x','name':'a'}]}; self.assertEqual(redact(x),{'Token':'[REDACTED]','nested':[{'password':'[REDACTED]','name':'a'}]}); self.assertEqual(x['Token'],'abc')\n    def test_01(self):\n        self.assertEqual(redact([1,None]),[1,None])\n    def test_02(self):\n        self.assertEqual(redact({'safe':'yes'}),{'safe':'yes'})\n\nif __name__ == '__main__':\n    unittest.main()\n"
+  },
+  "verify": [
+    "python",
+    "-m",
+    "unittest",
+    "-v",
+    "test_solution"
+  ]
+}

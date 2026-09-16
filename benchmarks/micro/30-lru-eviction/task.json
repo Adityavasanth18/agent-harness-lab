@@ -1,0 +1,20 @@
+{
+  "id": "30-lru-eviction",
+  "instruction": "Repair solution.py. simulate(capacity,accesses) returns (hits,keys), keys least-to-most recently used after accesses. Every miss inserts key and evicts oldest when needed. Zero capacity caches nothing; negative capacity ValueError. Use only Python standard library. Do not change the public function signature.",
+  "files": {
+    "solution.py": "def simulate(capacity, accesses):\n    \"\"\"Repair this implementation to satisfy the task contract.\"\"\"\n    return None\n"
+  },
+  "solution": {
+    "solution.py": "def simulate(capacity, accesses):\n    from collections import OrderedDict\n    if capacity<0: raise ValueError('capacity')\n    cache=OrderedDict(); hits=0\n    for key in accesses:\n        if key in cache: hits+=1; cache.move_to_end(key)\n        elif capacity:\n            cache[key]=None\n            if len(cache)>capacity: cache.popitem(last=False)\n    return hits,list(cache)\n"
+  },
+  "tests": {
+    "test_solution.py": "import unittest\nfrom solution import simulate\n\nclass ContractTests(unittest.TestCase):\n    def test_00(self):\n        self.assertEqual(simulate(2,['a','b','a','c','b']), (1,['c','b']))\n    def test_01(self):\n        self.assertEqual(simulate(0,['a','a']), (0,[]))\n    def test_02(self):\n        with self.assertRaises(ValueError): simulate(-1,[])\n\nif __name__ == '__main__':\n    unittest.main()\n"
+  },
+  "verify": [
+    "python",
+    "-m",
+    "unittest",
+    "-v",
+    "test_solution"
+  ]
+}

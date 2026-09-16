@@ -1,0 +1,20 @@
+{
+  "id": "05-topological-order",
+  "instruction": "Repair solution.py. toposort(graph) returns lexicographically smallest topological node ordering; include neighbor-only nodes; ValueError on cycles. Edges run prerequisite to dependent. Use only Python standard library. Do not change the public function signature.",
+  "files": {
+    "solution.py": "def toposort(graph):\n    \"\"\"Repair this implementation to satisfy the task contract.\"\"\"\n    return None\n"
+  },
+  "solution": {
+    "solution.py": "def toposort(graph):\n    import heapq\n    nodes=set(graph)|{v for vs in graph.values() for v in vs}\n    deg={n:0 for n in nodes}\n    for vs in graph.values():\n        for v in set(vs): deg[v]+=1\n    q=[n for n in nodes if deg[n]==0]; heapq.heapify(q); out=[]\n    while q:\n        n=heapq.heappop(q); out.append(n)\n        for v in set(graph.get(n,[])):\n            deg[v]-=1\n            if deg[v]==0: heapq.heappush(q,v)\n    if len(out)!=len(nodes): raise ValueError('cycle')\n    return out\n"
+  },
+  "tests": {
+    "test_solution.py": "import unittest\nfrom solution import toposort\n\nclass ContractTests(unittest.TestCase):\n    def test_00(self):\n        self.assertEqual(toposort({'b':['c'],'a':['c']}), ['a','b','c'])\n    def test_01(self):\n        with self.assertRaises(ValueError): toposort({'a':['b'],'b':['a']})\n    def test_02(self):\n        self.assertEqual(toposort({'a':['b','b']}), ['a','b'])\n    def test_03(self):\n        self.assertEqual(toposort({}), [])\n\nif __name__ == '__main__':\n    unittest.main()\n"
+  },
+  "verify": [
+    "python",
+    "-m",
+    "unittest",
+    "-v",
+    "test_solution"
+  ]
+}

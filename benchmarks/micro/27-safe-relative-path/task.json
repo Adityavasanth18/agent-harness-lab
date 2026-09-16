@@ -1,0 +1,20 @@
+{
+  "id": "27-safe-relative-path",
+  "instruction": "Repair solution.py. safe_path(text) normalizes POSIX relative paths, ignores . and repeated /; rejects absolute paths, any .. component, backslashes, NUL and empty normalized result with ValueError. Use only Python standard library. Do not change the public function signature.",
+  "files": {
+    "solution.py": "def safe_path(text):\n    \"\"\"Repair this implementation to satisfy the task contract.\"\"\"\n    return None\n"
+  },
+  "solution": {
+    "solution.py": "def safe_path(text):\n    if text.startswith('/') or '\\\\' in text or '\\x00' in text: raise ValueError('path')\n    parts=[p for p in text.split('/') if p not in ('','.')] \n    if not parts or '..' in parts: raise ValueError('path')\n    return '/'.join(parts)\n"
+  },
+  "tests": {
+    "test_solution.py": "import unittest\nfrom solution import safe_path\n\nclass ContractTests(unittest.TestCase):\n    def test_00(self):\n        self.assertEqual(safe_path('a//./b'),'a/b')\n    def test_01(self):\n        with self.assertRaises(ValueError): safe_path('a/../b')\n    def test_02(self):\n        with self.assertRaises(ValueError): safe_path('/tmp/a')\n    def test_03(self):\n        with self.assertRaises(ValueError): safe_path('a\\\\b')\n\nif __name__ == '__main__':\n    unittest.main()\n"
+  },
+  "verify": [
+    "python",
+    "-m",
+    "unittest",
+    "-v",
+    "test_solution"
+  ]
+}

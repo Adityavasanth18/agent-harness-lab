@@ -1,0 +1,20 @@
+{
+  "id": "08-json-lines",
+  "instruction": "Repair solution.py. parse_lines(text) parses nonblank JSON lines into a list, ignoring whitespace-only lines; invalid nonblank JSON raises ValueError. Use only Python standard library. Do not change the public function signature.",
+  "files": {
+    "solution.py": "def parse_lines(text):\n    \"\"\"Repair this implementation to satisfy the task contract.\"\"\"\n    return None\n"
+  },
+  "solution": {
+    "solution.py": "def parse_lines(text):\n    import json\n    return [json.loads(line) for line in text.splitlines() if line.strip()]\n"
+  },
+  "tests": {
+    "test_solution.py": "import unittest\nfrom solution import parse_lines\n\nclass ContractTests(unittest.TestCase):\n    def test_00(self):\n        self.assertEqual(parse_lines(' {\"a\":1}\\n\\n[2]\\n'), [{'a':1},[2]])\n    def test_01(self):\n        self.assertEqual(parse_lines(' \\n'), [])\n    def test_02(self):\n        with self.assertRaises(ValueError): parse_lines('{bad')\n\nif __name__ == '__main__':\n    unittest.main()\n"
+  },
+  "verify": [
+    "python",
+    "-m",
+    "unittest",
+    "-v",
+    "test_solution"
+  ]
+}

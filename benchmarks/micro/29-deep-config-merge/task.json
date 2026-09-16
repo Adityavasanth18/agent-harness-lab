@@ -1,0 +1,20 @@
+{
+  "id": "29-deep-config-merge",
+  "instruction": "Repair solution.py. deep_merge(base,override) recursively merges dictionaries, override wins other conflicts, lists replaced, no shared nested mutable objects with either input. Use only Python standard library. Do not change the public function signature.",
+  "files": {
+    "solution.py": "def deep_merge(base, override):\n    \"\"\"Repair this implementation to satisfy the task contract.\"\"\"\n    return None\n"
+  },
+  "solution": {
+    "solution.py": "def deep_merge(base, override):\n    import copy\n    result=copy.deepcopy(base)\n    for key,value in override.items():\n        result[key]=deep_merge(result[key],value) if key in result and isinstance(result[key],dict) and isinstance(value,dict) else copy.deepcopy(value)\n    return result\n"
+  },
+  "tests": {
+    "test_solution.py": "import unittest\nfrom solution import deep_merge\n\nclass ContractTests(unittest.TestCase):\n    def test_00(self):\n        self.assertEqual(deep_merge({'a':{'x':1,'y':2}},{'a':{'y':3}}),{'a':{'x':1,'y':3}})\n    def test_01(self):\n        a={'x':[1]}; b={'y':[2]}; c=deep_merge(a,b); c['x'].append(3); c['y'].append(4); self.assertEqual(a,{'x':[1]}); self.assertEqual(b,{'y':[2]})\n    def test_02(self):\n        self.assertEqual(deep_merge({'x':[1]},{'x':[2]}),{'x':[2]})\n\nif __name__ == '__main__':\n    unittest.main()\n"
+  },
+  "verify": [
+    "python",
+    "-m",
+    "unittest",
+    "-v",
+    "test_solution"
+  ]
+}

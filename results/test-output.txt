@@ -1,0 +1,43 @@
+test_export (test_benchmarks.BenchmarkTests.test_export) ... ok
+test_reject_duplicate_id_and_test_collision (test_benchmarks.BenchmarkTests.test_reject_duplicate_id_and_test_collision) ... ok
+test_reject_path_escape (test_benchmarks.BenchmarkTests.test_reject_path_escape) ... ok
+test_starters_fail_oracles_pass (test_benchmarks.BenchmarkTests.test_starters_fail_oracles_pass) ... ok
+test_local_opt_in_required (test_cli.CLITests.test_local_opt_in_required) ... ok
+test_resume_and_duplicate_output (test_cli.CLITests.test_resume_and_duplicate_output) ... ok
+test_command_timeout_and_output_cap (test_core.CoreTests.test_command_timeout_and_output_cap) ... ok
+test_compression (test_core.CoreTests.test_compression) ... ok
+test_config_validation (test_core.CoreTests.test_config_validation) ... ok
+test_context_pins_and_bounds (test_core.CoreTests.test_context_pins_and_bounds) ... ok
+test_full_overflow (test_core.CoreTests.test_full_overflow) ... ok
+test_paths_and_symlinks (test_core.CoreTests.test_paths_and_symlinks) ... ok
+test_trace_corruption_reports_line (test_core.CoreTests.test_trace_corruption_reports_line) ... ok
+test_empty_and_conflicting_duplicate (test_harbor_import.HarborImportTests.test_empty_and_conflicting_duplicate) ... ok
+test_error_unscored_missing_usage_null (test_harbor_import.HarborImportTests.test_error_unscored_missing_usage_null) ... ok
+test_invalid_rejected_before_output (test_harbor_import.HarborImportTests.test_invalid_rejected_before_output) ... ok
+test_job_embedded_and_child_dedup (test_harbor_import.HarborImportTests.test_job_embedded_and_child_dedup) ... ok
+test_naive_and_offset_timestamps_rejected (test_harbor_import.HarborImportTests.test_naive_and_offset_timestamps_rejected) ... ok
+test_trial_roundtrip_and_honest_metrics (test_harbor_import.HarborImportTests.test_trial_roundtrip_and_honest_metrics) ... ok
+test_chunk_is_not_token (test_metrics.MetricTests.test_chunk_is_not_token) ... ok
+test_dashboard_script_escape (test_metrics.MetricTests.test_dashboard_script_escape) ... ok
+test_derived_tpot_is_not_itl (test_metrics.MetricTests.test_derived_tpot_is_not_itl) ... ok
+test_empty_is_unknown (test_metrics.MetricTests.test_empty_is_unknown) ... ok
+test_metadata_replay_preserves_task (test_metrics.MetricTests.test_metadata_replay_preserves_task) ... ok
+test_missing_usage_no_partial_throughput (test_metrics.MetricTests.test_missing_usage_no_partial_throughput) ... ok
+test_optimizer_measured_constraints (test_metrics.MetricTests.test_optimizer_measured_constraints) ... ok
+test_overlap (test_metrics.MetricTests.test_overlap) ... ok
+test_percentile_interpolates (test_metrics.MetricTests.test_percentile_interpolates) ... ok
+test_replay_does_not_predict (test_metrics.MetricTests.test_replay_does_not_predict) ... ok
+test_separate_clock_domains (test_metrics.MetricTests.test_separate_clock_domains) ... ok
+test_touching_intervals_not_concurrent (test_metrics.MetricTests.test_touching_intervals_not_concurrent) ... ok
+test_trial_join_and_configured_cost (test_metrics.MetricTests.test_trial_join_and_configured_cost) ... ok
+test_bad_endpoint_and_config (test_runtime.RuntimeTests.test_bad_endpoint_and_config) ... ok
+test_bad_model_does_not_pass (test_runtime.RuntimeTests.test_bad_model_does_not_pass) ... ok
+test_http_stream_contract (test_runtime.RuntimeTests.test_http_stream_contract) ... ok
+test_injected_unittest_ignored (test_runtime.RuntimeTests.test_injected_unittest_ignored) ... ok
+test_three_architectures_and_no_oracle_leakage (test_runtime.RuntimeTests.test_three_architectures_and_no_oracle_leakage) ... ok
+test_transient_request_retry (test_runtime.RuntimeTests.test_transient_request_retry) ... ok
+
+----------------------------------------------------------------------
+Ran 38 tests in 4.421s
+
+OK
